@@ -248,6 +248,18 @@ class Validator:
             else "No literature search results were found.\n\n"
         )
 
+        cite_rule = (
+            "CITATION RULES:\n"
+            "When literature search results are provided above, you MUST cite the\n"
+            "specific paper for each reference value you derive from them:\n"
+            "  (source: literature; Author et al. YYYY, arXiv:XXXX.XXXXX)\n"
+            "  (source: literature; Author et al. YYYY, DOI:10.XXXX/...)\n"
+            "If you cannot point to a specific paper, use (source: estimated) — do NOT\n"
+            "use compound tags like 'literature/estimated'. Pick exactly one tag.\n\n"
+            if has_literature
+            else ""
+        )
+
         message = (
             f"Task: {task_description}\n\n"
             f"Output:\n{output[:800]}\n\n"
@@ -262,12 +274,13 @@ class Validator:
             f"- B3LYP: harmonic frequencies ~5-10% above experimental fundamentals\n"
             f"Give the METHOD-SPECIFIC expected range as the primary reference. You may also\n"
             f"note the experimental value for context.\n\n"
-            f"Tag sources:\n"
-            f"- (source: literature) — from search results or well-known published values\n"
-            f"- (source: experimental) — known experimental measurement\n"
-            f"- (source: estimated) — your general knowledge, less certain\n\n"
+            f"{cite_rule}"
+            f"Source tags (pick exactly ONE per value — no compound tags):\n"
+            f"- (source: literature; <citation>) — value from a specific paper you can cite\n"
+            f"- (source: experimental; <citation>) — known experimental measurement with citation\n"
+            f"- (source: estimated) — your general knowledge, no specific paper\n\n"
             f"Format:\nREFERENCE VALUES:\n"
-            f"- [quantity]: [method-specific range] (source: [type]); [notes]\n\n"
+            f"- [quantity]: [method-specific range] (source: [tag]); [notes]\n\n"
             f"If nothing is relevant, respond: NO REFERENCES FOUND"
         )
         response = self._single_llm_turn(
@@ -275,19 +288,21 @@ class Validator:
                 "You are a scientific reference specialist. Provide reference values "
                 "for validating computational results. ALWAYS give the expected range "
                 "for the SPECIFIC METHOD used in the task (e.g., DFT-PBE range, not "
-                "just experimental). Tag each value with its source confidence."
+                "just experimental). When citing literature, include the author, year, "
+                "and DOI or arXiv ID. Use exactly one source tag per value."
             ),
             message=message,
         )
         refs = self._parse_reference_response(response)
         if not refs:
             return refs, "llm"
-        # Check if any ref is actually from literature (not just estimated)
-        all_values = " ".join(refs.values()).lower()
-        has_concrete = any(
-            tag in all_values
-            for tag in ["source: literature", "source: experimental", "source: benchmark"]
+        # Check if any ref has a real citation (not just "estimated" or compound tags).
+        # A real literature ref must have "source: literature;" with a citation after the semicolon.
+        _CITE_RE = re.compile(
+            r"\(source:\s*(literature|experimental|benchmark)\s*;",
+            re.IGNORECASE,
         )
+        has_concrete = any(_CITE_RE.search(v) for v in refs.values())
         return refs, "literature" if has_concrete else "llm"
 
     @staticmethod

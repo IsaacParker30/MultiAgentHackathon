@@ -70,37 +70,42 @@ def assess_executability(script: str, filename: str) -> tuple[bool, str]:
     """
     lower = script.lower()
 
-    if filename.endswith((".sh", ".bash", ".slurm", ".pbs", ".sub")):
-        return False, "job-scheduler / shell script — needs HPC"
+    if filename.endswith((".slurm", ".pbs", ".sub")):
+        return False, "job-scheduler script — needs HPC"
 
-    if not filename.endswith(".py"):
-        return False, f"not a Python script ({filename})"
+    if filename.endswith((".sh", ".bash")):
+        hpc_markers = ["sbatch", "srun", "qsub", "bsub", "#SBATCH", "#PBS", "module load"]
+        if any(m in script for m in hpc_markers):
+            return False, "shell script with HPC scheduler commands"
 
-    for pkg in HEAVY_PACKAGES:
-        if pkg in lower:
-            return False, f"requires external package '{pkg}'"
+    if not filename.endswith((".py", ".sh", ".bash")):
+        return False, f"not a Python or shell script ({filename})"
 
-    if "subprocess.run" in script or "os.system" in script:
-        if any(cmd in lower for cmd in ["mpirun", "srun", "sbatch", "qsub"]):
-            return False, "launches HPC jobs via subprocess"
+    if filename.endswith(".py"):
+        if "subprocess.run" in script or "os.system" in script:
+            if any(cmd in lower for cmd in ["mpirun", "srun", "sbatch", "qsub"]):
+                return False, "launches HPC jobs via subprocess"
 
-    import_lines = [l for l in script.splitlines() if l.strip().startswith(("import ", "from "))]
-    for line in import_lines:
-        tokens = re.findall(r"(?:from|import)\s+([\w.]+)", line)
-        for tok in tokens:
-            root = tok.split(".")[0]
-            if root in HEAVY_PACKAGES:
-                return False, f"imports heavy package '{root}'"
+        import_lines = [l for l in script.splitlines() if l.strip().startswith(("import ", "from "))]
+        for line in import_lines:
+            tokens = re.findall(r"(?:from|import)\s+([\w.]+)", line)
+            for tok in tokens:
+                root = tok.split(".")[0]
+                if root in HEAVY_PACKAGES:
+                    return False, f"imports heavy package '{root}'"
 
-    return True, "pure Python with standard scientific libraries"
+    return True, "safe to run locally"
 
 
 # ── Local script executor ────────────────────────────────────────────────────
 def execute_script(filepath: str, timeout: int = 120) -> tuple[str, int, str | None]:
-    python = sys.executable
+    if filepath.endswith((".sh", ".bash")):
+        cmd = ["bash", filepath]
+    else:
+        cmd = [sys.executable, filepath]
     try:
         result = subprocess.run(
-            [python, filepath],
+            cmd,
             capture_output=True,
             text=True,
             timeout=timeout,
@@ -212,6 +217,10 @@ Structure:
   - Section: Generated Scripts  (filenames and brief description)
   - Section: Execution Results  (stdout from local runs, if any)
   - Section: Validation Results (PASS/FAIL checks with details, if any)
+  - Section: Reference Values Used (show each reference value, its numeric
+    range or expected value, and its source tag — e.g. "literature",
+    "experimental", "estimated". Always include this section when reference
+    values are provided in the input.)
 
 If no execution or validation was performed, omit those sections.
 
@@ -429,6 +438,10 @@ def main():
             val_section += f"\n--- {fname}: {'PASSED' if vdata['passed'] else 'FAILED'} ---\n"
             val_section += f"Modules: {', '.join(vdata['modules_used'])}\n"
             val_section += f"Reference source: {vdata['refs_source']}\n"
+            if vdata.get("reference_values"):
+                val_section += "Reference values used:\n"
+                for rk, rv in vdata["reference_values"].items():
+                    val_section += f"  - {rk}: {rv}\n"
             for c in vdata["checks"]:
                 val_section += f"  {c['status']}: {c['detail']}\n"
             val_section += f"Summary: {vdata['summary']}\n"
