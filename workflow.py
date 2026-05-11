@@ -46,8 +46,8 @@ def run_planning_phase(agents: dict, llm_config: LLMConfig, task_description: st
     return _extract_plan(chat_result)
 
 
-def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str) -> None:
-    work_dir = _setup_output_dir()
+def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str, task_description: str = "") -> None:
+    work_dir = _setup_workflow_dir(task_description or "workflow")
 
     executor_agent = agents["executor"]
     evaluator = agents["evaluator"]
@@ -87,15 +87,19 @@ def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str) -> 
         is_termination_msg=lambda x: EXECUTION_COMPLETE_KEYWORD in (x.get("content", "") or ""),
     )
 
+    plan_path = os.path.join(work_dir, "plan.md")
+    with open(plan_path, "w") as f:
+        f.write(plan_text)
+
     opening = (
-        "Execute the following approved ML workflow plan step by step. "
-        "Generate complete Python code for each step, wait for approval "
-        "before proceeding to the next.\n\n"
+        f"Execute the following approved workflow plan. "
+        f"Generate a single complete Python script. "
+        f"All output files will be saved to: {work_dir}\n\n"
         f"{plan_text}"
     )
 
     exec_user.initiate_chat(manager, message=opening)
-    print(f"\nAll outputs saved to: {work_dir}")
+    print(f"\nWorkflow directory: {work_dir}")
 
 
 def _extract_plan(chat_result) -> str:
@@ -110,8 +114,10 @@ def _extract_plan(chat_result) -> str:
     return "No plan found."
 
 
-def _setup_output_dir() -> str:
+def _setup_workflow_dir(task_description: str) -> str:
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    work_dir = os.path.join("output", f"run_{timestamp}")
-    os.makedirs(work_dir, exist_ok=True)
-    return work_dir
+    slug = "_".join(task_description.lower().split()[:5])
+    slug = "".join(c if c.isalnum() or c == "_" else "" for c in slug)
+    workflow_dir = os.path.join("workflows", f"{timestamp}_{slug}")
+    os.makedirs(workflow_dir, exist_ok=True)
+    return workflow_dir

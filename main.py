@@ -35,7 +35,7 @@ def main():
         print("\n" + "=" * 60)
         print("  PHASE 2: EXECUTION")
         print("=" * 60 + "\n")
-        run_execution_phase(agents, llm_config, plan)
+        run_execution_phase(agents, llm_config, plan, task)
     else:
         print("\nPlan saved. Exiting without execution.")
 
