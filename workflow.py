@@ -8,6 +8,15 @@ TERMINATION_KEYWORD = "APPROVED - READY TO EXECUTE"
 EXECUTION_COMPLETE_KEYWORD = "EXECUTION COMPLETE"
 
 
+def _is_execution_complete(msg: dict) -> bool:
+    content = (msg.get("content", "") or "").strip()
+    if EXECUTION_COMPLETE_KEYWORD not in content:
+        return False
+    if "```" in content:
+        return False
+    return True
+
+
 def run_planning_phase(agents: dict, llm_config: LLMConfig, task_description: str) -> str:
     planner = agents["planner"]
     data_eng = agents["data_engineer"]
@@ -84,7 +93,7 @@ def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str, tas
         name="ExecutionManager",
         groupchat=group_chat,
         llm_config=llm_config,
-        is_termination_msg=lambda x: EXECUTION_COMPLETE_KEYWORD in (x.get("content", "") or ""),
+        is_termination_msg=_is_execution_complete,
     )
 
     plan_path = os.path.join(work_dir, "plan.md")
