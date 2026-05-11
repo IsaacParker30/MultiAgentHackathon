@@ -1,0 +1,5 @@
+04_check_environment_and_install_notes.py
+01_setup_h2_dissociation_scan.py
+02_run_h2_pes_pyscf.py
+03_analyze_h2_dissociation_curve.py
+05_run_all.sh

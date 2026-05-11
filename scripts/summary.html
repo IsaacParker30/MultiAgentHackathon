@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H₂ Ground-State Dissociation Curve Simulation Plan</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #ddd;
+      --header: #f6f7f9;
+      --accent: #0b57d0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    h1 {
+      margin: 0 0 24px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+    h2 {
+      margin: 32px 0 12px;
+      font-size: 1.2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    p, li {
+      font-size: 0.98rem;
+    }
+    .note {
+      color: var(--muted);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: var(--header);
+      font-weight: 600;
+    }
+    ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+    code {
+      font-family: Consolas, Monaco, monospace;
+      background: #f3f4f6;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+    .title-sub {
+      color: var(--muted);
+      margin-top: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>H₂ Ground-State Dissociation Curve</h1>
+    <p class="title-sub">Simulation plan summary</p>
+
+    <h2>Problem Statement</h2>
+    <p>
+      Determine the desired accuracy or level of theory for the H₂ ground-state dissociation curve
+      (quick qualitative, good quantitative, or near-benchmark), and identify the intended compute
+      environment (laptop/workstation or HPC cluster, including scheduler or GPU availability if applicable).
+    </p>
+
+    <h2>System &amp; Goals</h2>
+    <ul>
+      <li>System: isolated H₂ molecule</li>
+      <li>Target: ground-state dissociation / potential-energy curve as a function of bond length</li>
+      <li>Primary objective: obtain a physically correct and smooth dissociation curve across equilibrium and stretched-bond regions</li>
+      <li>Accuracy options to decide: qualitative, quantitative, or near-benchmark</li>
+      <li>Execution context to decide: local workstation/laptop or HPC resources</li>
+      <li>Key physics concern: correct treatment of static correlation at large bond separation</li>
+    </ul>
+
+    <h2>Technical Recommendations</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Package</td>
+          <td>Use <code>ORCA</code> or <code>PySCF</code> for molecular benchmark work. Use <code>VASP</code> or <code>Quantum ESPRESSO</code> only if a periodic plane-wave workflow is specifically required.</td>
+        </tr>
+        <tr>
+          <td>DFT Functional</td>
+          <td>Use <code>PBE0</code> or <code>B3LYP</code> for good quantitative curves. Avoid plain GGA-only DFT for stretched-bond H₂ because semilocal functionals mishandle static correlation.</td>
+        </tr>
+        <tr>
+          <td>Near-Benchmark Theory</td>
+          <td>Use <code>CCSD(T)</code> near equilibrium, but switch to <code>CASSCF/CAS(2,2)</code> or <code>FCI</code> for full dissociation benchmarking, since single-reference methods break down at large bond stretch.</td>
+        </tr>
+        <tr>
+          <td>Basis Set</td>
+          <td><code>def2-TZVP</code> for quick qualitative work; <code>def2-QZVPP</code> or <code>aug-cc-pVQZ</code> for good quantitative results; <code>aug-cc-pV5Z</code> or CBS extrapolation for near-benchmark accuracy.</td>
+        </tr>
+        <tr>
+          <td>Dispersion</td>
+          <td>No empirical dispersion correction is needed for intramolecular H₂ dissociation.</td>
+        </tr>
+        <tr>
+          <td>Spin Treatment</td>
+          <td>Use unrestricted KS/UKS only as a diagnostic. Prefer restricted methods near equilibrium and multireference treatment at large separation. Watch for spin-symmetry breaking.</td>
+        </tr>
+        <tr>
+          <td>Convergence</td>
+          <td>Use tight thresholds, e.g. SCF convergence around <code>1e-8 Ha</code> and total-energy tolerance around <code>1e-6 Ha</code>, because the curve depends on small energy differences.</td>
+        </tr>
+        <tr>
+          <td>MLIP Use</td>
+          <td>MLIP is not recommended as the primary tool for H₂ dissociation. Direct electronic-structure calculations are cheaper and more reliable for this 2-atom system.</td>
+        </tr>
+        <tr>
+          <td>ML Surrogate Option</td>
+          <td>If a surrogate is desired, fit a small supervised model directly to ab initio energies and forces rather than using a large foundation MLIP.</td>
+        </tr>
+        <tr>
+          <td>Training Set</td>
+          <td>Use about 30–100 geometries spanning 0.4–8.0 Å, with denser sampling near equilibrium and in the 1.5–4.0 Å stretch region.</td>
+        </tr>
+        <tr>
+          <td>Training Targets</td>
+          <td>Train on energies and forces; if possible, include dissociation energy and equilibrium bond constraints during validation.</td>
+        </tr>
+        <tr>
+          <td>Finetuning</td>
+          <td>Skip foundation-model finetuning. For a small fitted model, use a low learning rate (~<code>1e-3</code> to <code>1e-4</code>) and early stopping to reduce overfitting risk.</td>
+        </tr>
+        <tr>
+          <td>Validation</td>
+          <td>Check size consistency at large separation against <code>2 × E(H atom)</code>; compare restricted vs unrestricted curves and inspect <code>&lt;S²&gt;</code>; recompute selected points with a larger basis and multireference reference.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Generated Scripts</h2>
+    <ul>
+      <li><code>01_setup_h2_dissociation_scan.py</code></li>
+      <li><code>02_run_h2_pes_pyscf.py</code></li>
+      <li><code>03_analyze_h2_dissociation_curve.py</code></li>
+      <li><code>04_check_environment_and_install_notes.py</code></li>
+      <li><code>05_run_all.sh</code></li>
+      <li><code>results.txt</code></li>
+    </ul>
+  </div>
+</body>
+</html>
