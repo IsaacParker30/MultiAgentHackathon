@@ -115,7 +115,7 @@ def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str, tas
     group_chat = GroupChat(
         agents=execution_agents,
         messages=[],
-        max_round=15,
+        max_round=20,
         speaker_selection_method="auto",
         allowed_or_disallowed_speaker_transitions=allowed_transitions,
         speaker_transitions_type="allowed",
