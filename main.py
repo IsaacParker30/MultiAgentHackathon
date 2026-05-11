@@ -28,7 +28,8 @@ def main():
 
     print("\n" + "=" * 60)
     print("  PLAN COMPLETE")
-    print("=" * 60 + "\n")
+    print("=" * 60)
+    print("\n" + plan[:500] + ("..." if len(plan) > 500 else "") + "\n")
 
     proceed = input("Proceed to execution? (y/n): ").strip().lower()
     if proceed == "y":

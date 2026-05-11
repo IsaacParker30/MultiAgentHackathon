@@ -1,11 +1,17 @@
 import os
+import re
 from datetime import datetime
 
 from autogen import ConversableAgent, GroupChat, GroupChatManager, LLMConfig
 from autogen.coding import LocalCommandLineCodeExecutor
 
-TERMINATION_KEYWORD = "APPROVED - READY TO EXECUTE"
+PLAN_APPROVED_KEYWORD = "PLAN_APPROVED"
 EXECUTION_COMPLETE_KEYWORD = "EXECUTION COMPLETE"
+
+
+def _is_plan_approved(msg: dict) -> bool:
+    content = (msg.get("content", "") or "").strip()
+    return content == PLAN_APPROVED_KEYWORD
 
 
 def _is_execution_complete(msg: dict) -> bool:
@@ -17,6 +23,41 @@ def _is_execution_complete(msg: dict) -> bool:
     return True
 
 
+def _make_planning_selector(agents: dict):
+    planner = agents["planner"]
+    specialists = [agents["data_engineer"], agents["ml_engineer"], agents["evaluator"]]
+    specialist_names = {a.name for a in specialists}
+    user = agents["user_proxy"]
+
+    def select_speaker(last_speaker, groupchat):
+        consulted = {m.get("name") for m in groupchat.messages} & specialist_names
+
+        if last_speaker == user:
+            return planner
+
+        if last_speaker == planner:
+            for s in specialists:
+                if s.name not in consulted:
+                    return s
+            return user
+
+        if last_speaker.name in specialist_names:
+            return planner
+
+        return planner
+
+    return select_speaker
+
+
+def _sanitize_plan(plan_text: str) -> str:
+    plan_text = re.sub(
+        r'plt\.show\(\)',
+        'plt.savefig("output_plot.png", dpi=150, bbox_inches="tight")\nprint("Plot saved to output_plot.png")',
+        plan_text,
+    )
+    return plan_text
+
+
 def run_planning_phase(agents: dict, llm_config: LLMConfig, task_description: str) -> str:
     planner = agents["planner"]
     data_eng = agents["data_engineer"]
@@ -25,22 +66,13 @@ def run_planning_phase(agents: dict, llm_config: LLMConfig, task_description: st
     user = agents["user_proxy"]
 
     planning_agents = [user, planner, data_eng, ml_eng, evaluator]
-
-    allowed_transitions = {
-        user: [planner],
-        planner: [data_eng, ml_eng, evaluator, user],
-        data_eng: [planner, ml_eng, evaluator],
-        ml_eng: [planner, data_eng, evaluator],
-        evaluator: [planner, data_eng, ml_eng],
-    }
+    selector = _make_planning_selector(agents)
 
     group_chat = GroupChat(
         agents=planning_agents,
         messages=[],
-        max_round=20,
-        speaker_selection_method="auto",
-        allowed_or_disallowed_speaker_transitions=allowed_transitions,
-        speaker_transitions_type="allowed",
+        max_round=15,
+        speaker_selection_method=selector,
         send_introductions=True,
     )
 
@@ -48,7 +80,7 @@ def run_planning_phase(agents: dict, llm_config: LLMConfig, task_description: st
         name="PlanningManager",
         groupchat=group_chat,
         llm_config=llm_config,
-        is_termination_msg=lambda x: TERMINATION_KEYWORD in (x.get("content", "") or ""),
+        is_termination_msg=_is_plan_approved,
     )
 
     chat_result = user.initiate_chat(manager, message=task_description)
@@ -57,14 +89,15 @@ def run_planning_phase(agents: dict, llm_config: LLMConfig, task_description: st
 
 def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str, task_description: str = "") -> None:
     work_dir = _setup_workflow_dir(task_description or "workflow")
+    plan_text = _sanitize_plan(plan_text)
 
     executor_agent = agents["executor"]
     evaluator = agents["evaluator"]
 
     exec_user = ConversableAgent(
         name="ExecUser",
-        system_message="You are the human user. Review generated code and approve execution.",
-        human_input_mode="ALWAYS",
+        system_message="You execute code automatically and return the output. Do not add commentary.",
+        human_input_mode="NEVER",
         llm_config=False,
         code_execution_config={
             "executor": LocalCommandLineCodeExecutor(work_dir=work_dir),
@@ -82,7 +115,7 @@ def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str, tas
     group_chat = GroupChat(
         agents=execution_agents,
         messages=[],
-        max_round=30,
+        max_round=15,
         speaker_selection_method="auto",
         allowed_or_disallowed_speaker_transitions=allowed_transitions,
         speaker_transitions_type="allowed",
@@ -102,7 +135,7 @@ def run_execution_phase(agents: dict, llm_config: LLMConfig, plan_text: str, tas
 
     opening = (
         f"Execute the following approved workflow plan. "
-        f"Generate a single complete Python script. "
+        f"Generate a single complete Python script that saves all plots with plt.savefig(). "
         f"All output files will be saved to: {work_dir}\n\n"
         f"{plan_text}"
     )
