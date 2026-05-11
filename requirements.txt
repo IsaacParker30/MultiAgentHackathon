@@ -1,0 +1,6 @@
+ag2[openai]
+python-dotenv
+pyscf
+matplotlib
+numpy
+requests
