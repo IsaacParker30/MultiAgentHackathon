@@ -1,0 +1,32 @@
+INTAKE SUMMARY
+==============
+
+What accuracy/level of theory do you want for the H₂ ground-state dissociation curve—e.g. quick qualitative, good quantitative, or near-benchmark?
+
+And what compute setup will you use: laptop/workstation or HPC cluster? If HPC, any scheduler or GPU availability?
+
+RECOMMENDATIONS
+
+DFT Settings
+  - Package: ORCA or PySCF for molecular benchmark work; VASP/Quantum ESPRESSO only if you specifically need a periodic plane-wave workflow — localized quantum-chemistry codes are more natural for isolated H₂.
+  - Functional: PBE0 or B3LYP for good quantitative curves; avoid plain GGA-only DFT if you care about the stretched-bond region — semilocal functionals mishandle static correlation in H₂ dissociation.
+  - Near-benchmark option: CCSD(T) near equilibrium, but use CASSCF/CAS(2,2) or FCI in a small system benchmark for full dissociation — single-reference methods break down at large bond stretch.
+  - Basis: def2-TZVP for quick qualitative, def2-QZVPP or aug-cc-pVQZ for good quantitative, aug-cc-pV5Z/complete-basis extrapolation for near-benchmark — basis convergence matters more than cell/basis-cutoff choices here.
+  - Dispersion: None — H₂ intramolecular dissociation does not require an empirical dispersion correction.
+  - Spin treatment: Use unrestricted KS/UKS only as a diagnostic; for the physical singlet curve prefer restricted methods near equilibrium and multireference treatment at large separation — unrestricted solutions can lower energy via spin-symmetry breaking.
+  - Convergence: Tight SCF and energy thresholds, e.g. 1e-8 Ha SCF and 1e-6 Ha total-energy tolerance — the dissociation curve is smooth and tiny energy differences matter.
+
+MLIP Settings
+  - MLIP choice: Not recommended as the primary tool for H₂ dissociation — a 2-atom molecule is cheaper and more reliable with direct electronic-structure calculations.
+  - If you want a surrogate: Use a tiny supervised model fit directly to ab initio energies/forces rather than a large foundation model — foundation MLIPs are unnecessary and poorly matched to this minimal system.
+  - Training set size: ~30–100 geometries spanning 0.4–8.0 Å with denser sampling near equilibrium and in the 1.5–4 Å stretch region — this captures both harmonic and bond-breaking regimes.
+  - Targets: Train on energies and forces, and if possible include dissociation-energy and equilibrium-bond constraints in validation — forces help shape the curve smoothly.
+
+Finetuning
+  - Foundation-model finetune: Skip — there is no practical advantage for a one-dimensional H₂ potential-energy curve.
+  - If fitting a small model: Use a low learning rate (~1e-3 to 1e-4), early stopping, and force-heavy loss weighting only if forces are high quality — overfitting is the main risk with such a tiny dataset.
+
+Validation
+  - Size-consistency test: Verify that at large separation the energy approaches 2 × E(H atom) with the correct spin treatment — this is the key physical check for dissociation.
+  - Symmetry-breaking test: Compare restricted vs unrestricted DFT curves and inspect ⟨S²⟩ — artificial spin contamination often signals an unphysical DFT dissociation path.
+  - Basis/level check: Recompute a few points near equilibrium and at stretched geometries with a larger basis and a multireference reference — this confirms that the chosen method is not only accurate at Re but also in the static-correlation regime.
