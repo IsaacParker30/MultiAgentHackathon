@@ -1,0 +1,14 @@
+# Generated for LAMMPS docs: https://docs.lammps.org/
+# Assumes the provided data file already contains a valid TIP4P/2005 water topology and charges.
+units           metal
+atom_style      atomic
+boundary        p p p
+read_data       water.data
+pair_style      tip4p/2005
+pair_coeff      * *
+velocity        all create 300.0 12345 mom yes rot yes dist gaussian
+fix             1 all npt temp 300.0 300.0 0.1 iso 1.0 1.0 1.0
+# 1.0 fs = 0.001 ps in metal units.
+timestep        0.001
+thermo          100
+run             10000
