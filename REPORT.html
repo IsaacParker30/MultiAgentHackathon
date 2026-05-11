@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Scientific Report — What is the adsorption energy of water on hBN?</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0d0f14; --surface:#13161d; --surface2:#1a1e28;
+    --border:#2a2f3d; --accent:#00d4a0; --accent2:#4d8bff;
+    --accent3:#ff6b6b; --text:#e2e8f0; --muted:#6b7a99;
+    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.7;min-height:100vh}
+  .header{border-bottom:1px solid var(--border);padding:2.5rem 3rem;background:var(--surface);position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,160,.08) 0%,transparent 70%);pointer-events:none}
+  .tag{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem}
+  .header h1{font-size:1.4rem;font-weight:600;max-width:900px;line-height:1.4}
+  .meta{margin-top:1rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);display:flex;gap:2rem;flex-wrap:wrap}
+  .meta span{color:var(--accent2)}
+  .container{max-width:1100px;margin:0 auto;padding:2.5rem 3rem}
+  .section{margin-bottom:3rem}
+  .sec-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+  .badge{font-family:var(--mono);font-size:.65rem;padding:.25rem .6rem;border-radius:3px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  .b-dft{background:rgba(77,139,255,.15);color:var(--accent2);border:1px solid rgba(77,139,255,.3)}
+  .b-lit{background:rgba(0,212,160,.12);color:var(--accent);border:1px solid rgba(0,212,160,.3)}
+  .b-pap{background:rgba(255,107,107,.12);color:var(--accent3);border:1px solid rgba(255,107,107,.3)}
+  .b-prof{background:rgba(180,130,255,.12);color:#b482ff;border:1px solid rgba(180,130,255,.3)}
+  .sec-title{font-size:1.05rem;font-weight:600}
+  .param-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem}
+  .param-card{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:1.1rem 1.3rem}
+  .param-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem}
+  .param-value{font-size:.9rem}.param-value .hi{font-family:var(--mono);color:var(--accent2);font-weight:600}
+  .box{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2rem;overflow-x:auto}
+  .box p{margin-bottom:.6rem;font-size:.92rem}
+  .box h2,.box h3{color:var(--accent2);margin:1.2rem 0 .4rem;font-size:.95rem}
+  .box strong{color:var(--accent);font-weight:600}
+  .box li{margin-left:1.2rem;font-size:.92rem;margin-bottom:.3rem}
+  table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.82rem}
+  th,td{border:1px solid var(--border);padding:.55rem;text-align:left;vertical-align:top}
+  th{background:var(--surface2);color:var(--accent)}
+  .papers-grid{display:flex;flex-direction:column;gap:1rem}
+  .paper-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent3);border-radius:6px;padding:1.2rem 1.5rem;transition:border-color .2s}
+  .paper-card:hover{border-left-color:var(--accent)}
+  .paper-title{font-size:.92rem;font-weight:600;margin-bottom:.4rem;line-height:1.4}
+  .paper-meta{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:.6rem}
+  .paper-meta a{color:var(--accent2);text-decoration:none}
+  .paper-meta a:hover{text-decoration:underline}
+  .paper-abstract{font-size:.83rem;color:var(--muted);line-height:1.6}
+  .no-data{font-family:var(--mono);font-size:.8rem;color:var(--accent3);padding:1rem;background:rgba(255,107,107,.05);border:1px dashed rgba(255,107,107,.3);border-radius:4px}
+  .footer{border-top:1px solid var(--border);padding:1.5rem 3rem;font-family:var(--mono);font-size:.68rem;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="tag">Multi-Agent Scientific Workflow &mdash; Keyword Search + Dynamic Relevance</div>
+  <h1>What is the adsorption energy of water on hBN?</h1>
+  <div class="meta">
+    <div>Generated <span>2026-05-11 16:18</span></div>
+    <div>Agents <span>Profile · SearchPlanner · DFTParams · Data · ReportWriter</span></div>
+    <div>Model <span>gpt-5.4</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="sec-header"><span class="badge b-lit">Final</span><span class="sec-title">Combined Answer</span></div>
+    <div class="box"><h2>Final Report</h2>
+<h2>Question</h2>
+<p>What is the adsorption energy of water on hBN?</p>
+<h2>Short Answer</h2>
+<p>For a <strong>single water molecule adsorbed on pristine, free-standing hexagonal boron nitride (hBN)</strong>, the best direct literature value in the supplied evidence is:</p>
+<ul>
+<li><strong>Adsorption / interaction energy = -84 ± 5 meV</strong> from <strong>diffusion Monte Carlo (DMC)</strong> <a href="#paper-1">Paper 1</a></li>
+</ul>
+<p>Equivalent units:</p>
+<ul>
+<li><strong>-0.084 ± 0.005 eV</strong></li>
+<li><strong>-8.1 ± 0.5 kJ/mol</strong></li>
+</ul>
+<p>This corresponds to <strong>weak physisorption</strong>.</p>
+<h2>Literature Data</h2>
+<p>The clearest source-backed value for the exact system asked about—<strong>water monomer on pristine periodic hBN</strong>—is from a DMC benchmark study:</p>
+<ul>
+<li><strong>Water monomer interaction energy on periodic hBN = -84 ± 5 meV</strong> <a href="#paper-1">Paper 1</a></li>
+</ul>
+<p>The same source also reports qualitatively that:</p>
+<ul>
+<li>Commonly used <strong>DFT exchange-correlation functionals deviate substantially in absolute interaction energies</strong> relative to the DMC benchmark <a href="#paper-1">Paper 1</a></li>
+<li>DFT performs <strong>better for relative differences between adsorption sites</strong> than for absolute binding energies <a href="#paper-1">Paper 1</a></li>
+</ul>
+<p>No direct <strong>experimental adsorption energy</strong> for molecular water on pristine hBN was provided in the supplied evidence.</p>
+<p>A second paper is relevant to the broader hBN–water interface, but the supplied evidence does <strong>not</strong> include a numerical monomer adsorption energy for pristine hBN from that work <a href="#paper-2">Paper 2</a>.</p>
+<h2>DFT / Simulation Setup Recommendation</h2>
+<p>If the goal is to reproduce or extend the adsorption-energy calculation for <strong>one H\(_2\)O on pristine hBN</strong>, the recommended setup is:</p>
+<ul>
+<li><strong>Target system:</strong> single H\(_2\)O molecule on a pristine periodic hBN monolayer</li>
+<li><strong>Target property:</strong> adsorption energy / interaction energy</li>
+<li><strong>Benchmark method:</strong> <strong>DMC</strong>, because it provides the most reliable direct value in the supplied evidence <a href="#paper-1">Paper 1</a></li>
+<li><strong>Practical electronic-structure method:</strong> <strong>dispersion-inclusive periodic DFT</strong>, used with caution and benchmarked to DMC</li>
+</ul>
+<p>Recommended modeling choices:</p>
+<ul>
+<li>Use a <strong>large in-plane supercell</strong> to minimize water–water image interactions</li>
+<li>Use <strong>sufficient vacuum</strong> normal to the sheet</li>
+<li>Treat the system in the <strong>low-coverage / isolated monomer limit</strong></li>
+<li>Test multiple adsorption sites and orientations, especially:</li>
+<li><strong>B-top</strong></li>
+<li><strong>N-top</strong></li>
+<li><strong>hexagon hollow</strong></li>
+<li>Include <strong>vdW/dispersion treatment</strong>, since this is a physisorption problem</li>
+<li>Use tight structural relaxation and converged k-point/cutoff settings</li>
+<li>Apply a <strong>dipole correction</strong> if using an asymmetric slab-like setup</li>
+</ul>
+<p>Recommended adsorption-energy expression:</p>
+<p>\[</p>
+<p>E_{\mathrm{ads}} = E_{\mathrm{H_2O/hBN}} - E_{\mathrm{hBN}} - E_{\mathrm{H_2O}}</p>
+<p>\]</p>
+<p>with <strong>negative</strong> \(E_{\mathrm{ads}}\) indicating favorable adsorption.</p>
+<h2>Numerical Values</h2>
+<table><thead><tr><th>Quantity</th><th>Value</th><th>Units</th><th>System</th><th>Method</th><th>Conditions</th><th>Reference</th><th>Confidence</th></tr></thead><tbody>
+<tr><td>Water adsorption / interaction energy</td><td>-84 ± 5</td><td>meV</td><td>Water monomer on periodic hexagonal boron nitride sheet</td><td>Diffusion Monte Carlo</td><td>Pristine periodic hBN sheet; monomer adsorption</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Water adsorption / interaction energy</td><td>-0.084 ± 0.005</td><td>eV</td><td>Water monomer on periodic hexagonal boron nitride sheet</td><td>Diffusion Monte Carlo</td><td>Unit-converted from literature value above</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Water adsorption / interaction energy</td><td>-8.1 ± 0.5</td><td>kJ/mol</td><td>Water monomer on periodic hexagonal boron nitride sheet</td><td>Diffusion Monte Carlo</td><td>Unit-converted from literature value above</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+</tbody></table>
+<p>Additional simulation-relevant values from the supplied evidence:</p>
+<table><thead><tr><th>Parameter</th><th>Suggested value/range</th><th>Units</th><th>Reference</th><th>Confidence</th></tr></thead><tbody>
+<tr><td>Benchmark adsorption energy for water monomer on pristine hBN</td><td>-84 ± 5</td><td>meV</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Benchmark method</td><td>Diffusion Monte Carlo</td><td>—</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>DFT absolute adsorption energies vs benchmark</td><td>Deviate substantially</td><td>—</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>DFT relative site-energy differences</td><td>Better reproduced than absolute energies</td><td>—</td><td><a href="#paper-1">Paper 1</a></td><td>Medium</td></tr>
+<tr><td>Adsorption model</td><td>Single water molecule on periodic pristine hBN sheet</td><td>—</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Coverage regime</td><td>Low coverage / isolated monomer</td><td>—</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Dispersion treatment in DFT</td><td>Include vdW correction</td><td>—</td><td>Best-practice inference</td><td>High</td></tr>
+<tr><td>Supercell lateral size</td><td>Large enough to suppress water–water image interactions</td><td>—</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Vacuum thickness</td><td>Sufficient to decouple periodic images</td><td>Å</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>k-point sampling</td><td>Converged Monkhorst-Pack mesh; Gamma-only if supercell is very large</td><td>—</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Geometry sampling</td><td>Test B-top, N-top, hollow, and multiple water orientations</td><td>—</td><td><a href="#paper-1">Paper 1</a>; best-practice inference</td><td>Medium</td></tr>
+<tr><td>Adsorption-energy formula</td><td>\(E_{\mathrm{ads}} = E_{\mathrm{H_2O/hBN}} - E_{\mathrm{hBN}} - E_{\mathrm{H_2O}}\)</td><td>—</td><td>Best-practice inference</td><td>High</td></tr>
+<tr><td>Structural relaxation</td><td>Tight ionic relaxation before final energy</td><td>—</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Electrostatic correction</td><td>Use dipole correction for asymmetric setup</td><td>—</td><td>Best-practice inference</td><td>Medium</td></tr>
+</tbody></table>
+<h2>Most Relevant References</h2>
+<ul>
+<li>&lt;a id=&quot;paper-1&quot;&gt;&lt;/a&gt;<strong><a href="#paper-1">Paper 1</a></strong>: *Water on hexagonal boron nitride from diffusion Monte Carlo*</li>
+</ul>
+<p>Most relevant source. Gives the direct benchmark adsorption/interaction energy:</p>
+<p><strong>-84 ± 5 meV</strong> for a water monomer on periodic hBN.</p>
+<ul>
+<li>&lt;a id=&quot;paper-2&quot;&gt;&lt;/a&gt;<strong><a href="#paper-2">Paper 2</a></strong>: *Spontaneous Surface Charging and Janus Nature of the Hexagonal Boron Nitride-Water Interface*</li>
+</ul>
+<p>Relevant to broader hBN–water interface chemistry, but the supplied evidence does not provide a direct numerical monomer adsorption energy for pristine hBN.</p>
+<h2>Uncertainties</h2>
+<ul>
+<li>The reported value applies specifically to a <strong>single water molecule on pristine periodic hBN</strong>, not necessarily to:</li>
+<li>defective hBN</li>
+<li>multilayer hBN</li>
+<li>supported hBN</li>
+<li>water clusters, films, or liquid interfaces</li>
+<li>Adsorption energy can vary with:</li>
+<li>adsorption site</li>
+<li>molecular orientation</li>
+<li>coverage</li>
+<li>structural model</li>
+<li>No source-backed numerical <strong>DFT adsorption energies</strong> were provided in the supplied evidence, only the qualitative statement that many DFT functionals deviate substantially from DMC <a href="#paper-1">Paper 1</a></li>
+<li>No direct <strong>experimental monomer adsorption energy</strong> was available in the supplied evidence</li>
+<li>No source-backed values were available for:</li>
+<li>equilibrium adsorption height</li>
+<li>minimum-energy site</li>
+<li>zero-point-energy corrections</li>
+<li>finite-temperature free energies</li>
+</ul>
+<h2>Next Best Actions</h2>
+<p>1. Use <strong>-84 ± 5 meV</strong> as the current best benchmark value for <strong>water monomer adsorption on pristine hBN</strong> <a href="#paper-1">Paper 1</a>.</p>
+<p>2. For new calculations, run <strong>dispersion-inclusive periodic DFT</strong> and compare against that DMC benchmark.</p>
+<p>3. Explicitly sample <strong>B-top, N-top, and hollow</strong> sites with multiple water orientations.</p>
+<p>4. If higher fidelity is needed, determine:</p>
+<ul>
+<li>equilibrium adsorption geometry</li>
+<li>adsorption height</li>
+<li>site-dependent energy differences</li>
+<li>zero-point and finite-temperature corrections</li>
+</ul>
+<p>5. Separate clearly between <strong>monomer adsorption energy</strong> and <strong>interfacial water behavior</strong>, since they are not the same observable.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header"><span class="badge b-prof">Profile</span><span class="sec-title">Dynamic Keywords Used for Search/Scoring</span></div>
+    <div class="box"><h2>Dynamic Relevance Profile</h2>
+<h2>core_entities</h2>
+<ul>
+<li>water</li>
+<li>hexagonal boron nitride</li>
+</ul>
+<h2>entity_aliases</h2>
+<ul>
+<li><strong>water</strong>: [&#x27;H2O&#x27;, &#x27;water molecule&#x27;, &#x27;molecular water&#x27;]</li>
+<li><strong>hexagonal boron nitride</strong>: [&#x27;hBN&#x27;, &#x27;h-BN&#x27;, &#x27;hexagonal BN&#x27;, &#x27;boron nitride&#x27;, &#x27;BN&#x27;, &#x27;2D boron nitride&#x27;, &#x27;monolayer boron nitride&#x27;, &#x27;boron nitride sheet&#x27;]</li>
+</ul>
+<h2>target_property</h2>
+<ul>
+<li>adsorption energy</li>
+</ul>
+<h2>property_aliases</h2>
+<ul>
+<li>binding energy</li>
+<li>interaction energy</li>
+<li>water adsorption energy</li>
+<li>adsorption enthalpy</li>
+<li>desorption energy</li>
+<li>physisorption energy</li>
+<li>chemisorption energy</li>
+<li>stability of adsorption</li>
+</ul>
+<h2>required_context</h2>
+<ul>
+<li>adsorption</li>
+<li>surface</li>
+<li>monolayer</li>
+<li>sheet</li>
+<li>2D material</li>
+<li>interface</li>
+<li>water on hBN</li>
+<li>water on boron nitride</li>
+<li>single molecule adsorption</li>
+<li>surface binding</li>
+<li>adsorption site</li>
+<li>orientation</li>
+<li>coverage</li>
+<li>defect-free</li>
+<li>pristine</li>
+</ul>
+<h2>useful_methods</h2>
+<ul>
+<li>density functional theory</li>
+<li>DFT</li>
+<li>first-principles calculations</li>
+<li>ab initio calculations</li>
+<li>van der Waals corrected DFT</li>
+<li>dispersion-corrected DFT</li>
+<li>RPA</li>
+<li>random phase approximation</li>
+<li>MP2</li>
+<li>CCSD(T)</li>
+<li>diffusion Monte Carlo</li>
+<li>DMC</li>
+<li>temperature-programmed desorption</li>
+<li>TPD</li>
+<li>calorimetry</li>
+</ul>
+<h2>comparable_systems</h2>
+<ul>
+<li>water on graphene</li>
+<li>water on graphite</li>
+<li>water on boron nitride nanotubes</li>
+<li>water on layered boron nitride</li>
+<li>water on 2D materials</li>
+<li>water on insulating surfaces</li>
+</ul>
+<h2>extra_search_terms</h2>
+<ul>
+<li>wetting</li>
+<li>physisorption</li>
+<li>vdW</li>
+<li>dispersion</li>
+<li>adsorbate</li>
+<li>substrate</li>
+<li>potential energy surface</li>
+<li>binding site</li>
+<li>orientation dependence</li>
+<li>surface science</li>
+</ul>
+<h2>Flattened terms used for scoring</h2>
+<ul>
+<li>water</li>
+<li>hexagonal boron nitride</li>
+<li>H2O</li>
+<li>water molecule</li>
+<li>molecular water</li>
+<li>hBN</li>
+<li>h-BN</li>
+<li>hexagonal BN</li>
+<li>boron nitride</li>
+<li>BN</li>
+<li>2D boron nitride</li>
+<li>monolayer boron nitride</li>
+<li>boron nitride sheet</li>
+<li>adsorption energy</li>
+<li>binding energy</li>
+<li>interaction energy</li>
+<li>water adsorption energy</li>
+<li>adsorption enthalpy</li>
+<li>desorption energy</li>
+<li>physisorption energy</li>
+<li>chemisorption energy</li>
+<li>stability of adsorption</li>
+<li>adsorption</li>
+<li>surface</li>
+<li>monolayer</li>
+<li>sheet</li>
+<li>2D material</li>
+<li>interface</li>
+<li>water on hBN</li>
+<li>water on boron nitride</li>
+<li>single molecule adsorption</li>
+<li>surface binding</li>
+<li>adsorption site</li>
+<li>orientation</li>
+<li>coverage</li>
+<li>defect-free</li>
+<li>pristine</li>
+<li>density functional theory</li>
+<li>DFT</li>
+<li>first-principles calculations</li>
+<li>ab initio calculations</li>
+<li>van der Waals corrected DFT</li>
+<li>dispersion-corrected DFT</li>
+<li>RPA</li>
+<li>random phase approximation</li>
+<li>MP2</li>
+<li>CCSD(T)</li>
+<li>diffusion Monte Carlo</li>
+<li>DMC</li>
+<li>temperature-programmed desorption</li>
+<li>TPD</li>
+<li>calorimetry</li>
+<li>water on graphene</li>
+<li>water on graphite</li>
+<li>water on boron nitride nanotubes</li>
+<li>water on layered boron nitride</li>
+<li>water on 2D materials</li>
+<li>water on insulating surfaces</li>
+<li>wetting</li>
+<li>physisorption</li>
+<li>vdW</li>
+<li>dispersion</li>
+<li>adsorbate</li>
+<li>substrate</li>
+<li>potential energy surface</li>
+<li>binding site</li>
+<li>orientation dependence</li>
+<li>surface science</li>
+</ul></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header"><span class="badge b-dft">DFT Parameters</span><span class="sec-title">Recommended Simulation Setup</span></div>
+    <div class="param-grid">
+      <div class="param-card"><div class="param-label">Query Style</div><div class="param-value"><span class="hi">Keyword</span> — no full-question API search</div></div>
+      <div class="param-card"><div class="param-label">Relevance</div><div class="param-value"><span class="hi">Dynamic</span> — no hard-coded system aliases</div></div>
+      <div class="param-card"><div class="param-label">Evidence</div><div class="param-value"><span class="hi">13</span> retained papers</div></div>
+      <div class="param-card"><div class="param-label">Filtering</div><div class="param-value"><span class="hi">Loose</span> — top papers rescued if scores are weak</div></div>
+    </div>
+    <div class="box"><h2>DFT / Simulation Setup Recommendations</h2>
+<h2>Target system</h2>
+<p>Single H\(_2\)O molecule adsorbed on pristine, free-standing hexagonal boron nitride (hBN) monolayer.</p>
+<h2>Target property</h2>
+<p>Adsorption energy / interaction energy of water on hBN.</p>
+<h2>Recommended method</h2>
+<p>For the <strong>best available direct value</strong>, use a <strong>high-level benchmark method</strong>:</p>
+<ul>
+<li><strong>Diffusion Monte Carlo (DMC)</strong> gives the clearest directly retrieved adsorption energy for water monomer on periodic hBN.</li>
+</ul>
+<p>For a practical DFT workflow to reproduce or screen structures:</p>
+<ul>
+<li><strong>Dispersion-inclusive DFT</strong> on a periodic hBN slab/monolayer model</li>
+<li>Then compute adsorption energies for candidate sites/orientations and compare against the DMC benchmark.</li>
+</ul>
+<h2>Functional / model / force field</h2>
+<p>From the retrieved evidence:</p>
+<ul>
+<li>Direct benchmark exists from <strong>DMC</strong> for water monomer on hBN: <strong>interaction energy = -84 ± 5 meV</strong> <a href="#paper-1">Paper 1</a>.</li>
+<li>The same paper states that several widely used DFT XC functionals <strong>deviate substantially</strong> in absolute interaction energies, though <strong>relative site differences are better reproduced</strong> <a href="#paper-1">Paper 1</a>.</li>
+</ul>
+<p>So for DFT:</p>
+<ul>
+<li>Use a <strong>vdW-corrected functional</strong> as a starting point, but treat the result as approximate and benchmark to DMC.</li>
+<li>Exact preferred functional is <strong>not recoverable from the provided evidence</strong>, so any specific choice below is best-practice inference.</li>
+</ul>
+<h2>Dispersion or long-range treatment</h2>
+<p>Water on pristine hBN is a <strong>physisorption</strong> problem, so <strong>dispersion treatment is essential</strong>.</p>
+<ul>
+<li>Direct evidence: DFT functionals deviate in absolute energy, implying sensitivity to XC/dispersion treatment <a href="#paper-1">Paper 1</a>.</li>
+<li>Best-practice inference: use a <strong>nonlocal vdW functional</strong> or <strong>pairwise dispersion correction</strong>.</li>
+</ul>
+<h2>Basis / cutoff / numerical settings</h2>
+<p>No direct numerical DFT setup was retrieved for this exact system from full text.</p>
+<p>Use converged periodic 2D-adsorption settings as <strong>best-practice inference</strong>:</p>
+<ul>
+<li>Plane-wave basis with sufficiently converged cutoff</li>
+<li>Tight SCF and ionic relaxation thresholds</li>
+<li>Dipole correction if asymmetric adsorption geometry is used</li>
+</ul>
+<h2>Cell / slab / boundary conditions</h2>
+<p>Model:</p>
+<ul>
+<li>Periodic <strong>single hBN sheet</strong></li>
+<li>Large in-plane supercell to minimize water–water image interactions</li>
+<li>Sufficient vacuum normal to the sheet</li>
+</ul>
+<p>Because only a monomer adsorption energy is requested, use:</p>
+<ul>
+<li><strong>Low-coverage limit</strong></li>
+<li>Multiple adsorption sites/orientations, especially above <strong>B</strong>, <strong>N</strong>, and <strong>hexagon center</strong> positions, since adsorption energy depends on site/orientation.</li>
+</ul>
+<h2>Sampling / k-points / trajectory settings</h2>
+<p>For static adsorption-energy calculations:</p>
+<ul>
+<li>Geometry optimization for isolated hBN, isolated H\(_2\)O, and adsorbed H\(_2\)O/hBN</li>
+<li>Monkhorst-Pack k-mesh converged with supercell size; gamma-only may be acceptable for very large supercells as a best-practice inference</li>
+</ul>
+<p>No AIMD is required unless finite-temperature free energies are desired.</p>
+<h2>How to compute the target property</h2>
+<p>For a single adsorbed water molecule, compute</p>
+<p>\[</p>
+<p>E_{\mathrm{ads}} = E_{\mathrm{H_2O/hBN}} - E_{\mathrm{hBN}} - E_{\mathrm{H_2O}}</p>
+<p>\]</p>
+<p>With this sign convention:</p>
+<ul>
+<li><strong>Negative</strong> \(E_{\mathrm{ads}}\) means favorable adsorption.</li>
+</ul>
+<p>From the retrieved direct evidence:</p>
+<ul>
+<li><strong>Water monomer interaction/adsorption energy on periodic hBN = \(-84 \pm 5\) meV</strong> from DMC <a href="#paper-1">Paper 1</a>.</li>
+</ul>
+<p>This is the most direct answer supported by the retrieved papers.</p>
+<h2>DFT starting-point table</h2>
+<table><thead><tr><th>Parameter</th><th>Suggested value/range</th><th>Units</th><th>Direct-system evidence</th><th>Comparable-system evidence</th><th>Reference</th><th>Confidence</th></tr></thead><tbody>
+<tr><td>Water monomer adsorption / interaction energy on pristine periodic hBN</td><td>-84 ± 5</td><td>meV</td><td>Yes; explicitly reported for water monomer on periodic hBN</td><td>No</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Electronic-structure benchmark method</td><td>Diffusion Monte Carlo</td><td>—</td><td>Yes; used directly for water on hBN</td><td>No</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>DFT absolute adsorption energies vs benchmark</td><td>Deviate substantially from DMC</td><td>—</td><td>Yes; stated qualitatively</td><td>No</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>DFT relative differences between adsorption sites</td><td>Better reproduced than absolute energies</td><td>—</td><td>Yes; stated qualitatively</td><td>No</td><td><a href="#paper-1">Paper 1</a></td><td>Medium</td></tr>
+<tr><td>Adsorption model</td><td>Single water molecule on periodic pristine hBN sheet</td><td>—</td><td>Yes</td><td>No</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Coverage regime</td><td>Low coverage / isolated monomer</td><td>—</td><td>Implied by “water monomer” adsorption</td><td>No</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Dispersion treatment in DFT</td><td>Include vdW correction</td><td>—</td><td>Indirect; physisorption and DFT sensitivity implied</td><td>No</td><td>Best-practice inference</td><td>High</td></tr>
+<tr><td>Supercell lateral size</td><td>Large enough to suppress water–water image interactions</td><td>—</td><td>No exact size retrieved</td><td>No</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Vacuum thickness</td><td>Sufficient to decouple periodic images normal to sheet</td><td>Å</td><td>No exact value retrieved</td><td>No</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>k-point sampling</td><td>Converged Monkhorst-Pack mesh; gamma-only if supercell is very large</td><td>—</td><td>No exact value retrieved</td><td>No</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Geometry sampling</td><td>Test B-top, N-top, hollow, and multiple water orientations</td><td>—</td><td>Site dependence discussed qualitatively</td><td>No</td><td><a href="#paper-1">Paper 1</a>; Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Adsorption-energy formula</td><td>\(E_{\mathrm{ads}} = E_{\mathrm{H_2O/hBN}} - E_{\mathrm{hBN}} - E_{\mathrm{H_2O}}\)</td><td>—</td><td>Standard approach, not explicitly extracted</td><td>No</td><td>Best-practice inference</td><td>High</td></tr>
+<tr><td>Structural relaxation criterion</td><td>Tight ionic relaxation before final single-point energy</td><td>—</td><td>No exact threshold retrieved</td><td>No</td><td>Best-practice inference</td><td>Medium</td></tr>
+<tr><td>Electrostatic correction</td><td>Use dipole correction for asymmetric slab setup</td><td>—</td><td>No direct value retrieved</td><td>No</td><td>Best-practice inference</td><td>Medium</td></tr>
+</tbody></table>
+<h2>Parameters supported by retrieved papers</h2>
+<p>Supported directly:</p>
+<ul>
+<li><strong>Adsorption/interation energy of water monomer on periodic hBN: \(-84 \pm 5\) meV</strong> <a href="#paper-1">Paper 1</a></li>
+<li>This value comes from <strong>DMC</strong> <a href="#paper-1">Paper 1</a></li>
+<li>DFT functionals show <strong>substantial errors in absolute adsorption energy</strong> relative to DMC <a href="#paper-1">Paper 1</a></li>
+<li>DFT is somewhat more reliable for <strong>energy differences between adsorption sites</strong> than for absolute binding <a href="#paper-1">Paper 1</a></li>
+</ul>
+<h2>Best-practice inferred parameters</h2>
+<p>Not directly reported in the retrieved evidence, but reasonable for setting up a calculation:</p>
+<ul>
+<li>Use <strong>pristine monolayer hBN</strong> with an <strong>isolated water molecule</strong></li>
+<li>Include <strong>dispersion</strong></li>
+<li>Use a <strong>large supercell</strong> and <strong>adequate vacuum</strong></li>
+<li>Sample several <strong>adsorption sites and dipole orientations</strong></li>
+<li>Relax geometries and compute adsorption energy from total-energy differences</li>
+<li>Benchmark DFT to the DMC value where possible</li>
+</ul>
+<h2>Missing information</h2>
+<p>Not available from the retrieved evidence:</p>
+<ul>
+<li>Exact adsorption site of the minimum-energy configuration</li>
+<li>Equilibrium adsorption height</li>
+<li>Exact DFT functional that best matches DMC</li>
+<li>Numerical settings such as cutoff, vacuum thickness, supercell dimensions, and k-mesh from full text</li>
+<li>Zero-point-energy or finite-temperature corrections</li>
+<li>Experimental adsorption energy for pristine monomer adsorption on ideal hBN</li>
+</ul>
+<p><strong>Bottom line:</strong> based on the retrieved direct evidence, the adsorption energy of a <strong>single water molecule on pristine hBN</strong> is <strong>about \(-84 \pm 5\) meV</strong> from <strong>diffusion Monte Carlo</strong> <a href="#paper-1">Paper 1</a>.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header"><span class="badge b-lit">Literature Data</span><span class="sec-title">Reference Values &amp; Literature Data</span></div>
+    <div class="box"><h2>Reference Values &amp; Literature Data</h2>
+<h2>Direct answer</h2>
+<p>The clearest direct literature value in the retrieved evidence for <strong>a single water molecule adsorbed on pristine hexagonal boron nitride (hBN)</strong> is:</p>
+<ul>
+<li><strong>Adsorption / interaction energy = -84 ± 5 meV</strong> from <strong>diffusion Monte Carlo (DMC)</strong> for a <strong>water monomer on a periodic hBN sheet</strong> <a href="#paper-1">Paper 1</a>.</li>
+</ul>
+<p>Using best-practice unit conversion:</p>
+<ul>
+<li><strong>-84 meV ≈ -0.084 eV ≈ -8.1 kJ/mol</strong></li>
+</ul>
+<p>This indicates <strong>weak physisorption</strong>.</p>
+<h2>Direct data for the requested system</h2>
+<p>Only one direct quantitative value was retrieved for the specific system <strong>water monomer on pristine hBN sheet</strong>:</p>
+<ul>
+<li><strong>-84 ± 5 meV</strong> interaction energy, from DMC <a href="#paper-1">Paper 1</a>.</li>
+</ul>
+<p>Paper 1 also states in the abstract that multiple DFT exchange-correlation functionals were benchmarked against DMC and “all deviate substantially,” but <strong>no specific DFT adsorption-energy numbers were provided in the retrieved evidence</strong>.</p>
+<h2>Experimental data</h2>
+<p>No direct <strong>experimental adsorption energy</strong> for <strong>water on pristine hBN</strong> was found in the retrieved evidence.</p>
+<p>Paper 2 concerns the <strong>hBN-water interface</strong> and discusses OH⁻ chemisorption/physisorption and two nearly equally stable states, supported by spectroscopy/AFM/simulations, but the retrieved abstract does <strong>not provide a numerical adsorption energy</strong> for molecular water on pristine hBN <a href="#paper-2">Paper 2</a>.</p>
+<h2>Simulation / theoretical data</h2>
+<ul>
+<li><strong>DMC:</strong> water monomer interaction energy on periodic hBN sheet is <strong>-84 ± 5 meV</strong> <a href="#paper-1">Paper 1</a>.</li>
+<li><strong>DFT benchmark context:</strong> Paper 1 reports that commonly used DFT functionals deviate substantially from the DMC benchmark, but no direct numerical DFT values are available in the provided evidence <a href="#paper-1">Paper 1</a>.</li>
+</ul>
+<h2>Comparable systems</h2>
+<p>No retrieved paper here provides a quantitative adsorption energy for a directly comparable system such as <strong>water on graphene/graphite</strong>.</p>
+<p>So, <strong>no comparable numerical values can be extracted from the supplied evidence</strong>.</p>
+<p>Best-practice inference:</p>
+<ul>
+<li>The magnitude in Paper 1 is consistent with <strong>weak vdW-dominated monomer physisorption on a 2D surface</strong>, but this is an inference and not an additional literature value.</li>
+</ul>
+<h2>Numerical values table</h2>
+<table><thead><tr><th>Quantity</th><th>Value</th><th>Units</th><th>System</th><th>Method</th><th>Conditions</th><th>Reference</th><th>Confidence</th></tr></thead><tbody>
+<tr><td>Water adsorption / interaction energy</td><td>-84 ± 5</td><td>meV</td><td>Water monomer on periodic hexagonal boron nitride sheet</td><td>Diffusion Monte Carlo</td><td>Pristine periodic hBN sheet; monomer adsorption; abstract-derived value</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Water adsorption / interaction energy</td><td>-0.084 ± 0.005</td><td>eV</td><td>Water monomer on periodic hexagonal boron nitride sheet</td><td>Diffusion Monte Carlo</td><td>Unit-converted from the literature meV value above</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+<tr><td>Water adsorption / interaction energy</td><td>-8.1 ± 0.5</td><td>kJ/mol</td><td>Water monomer on periodic hexagonal boron nitride sheet</td><td>Diffusion Monte Carlo</td><td>Unit-converted from the literature meV value above</td><td><a href="#paper-1">Paper 1</a></td><td>High</td></tr>
+</tbody></table>
+<h2>Important papers found</h2>
+<ul>
+<li><strong><a href="#paper-1">Paper 1</a>: _Water on hexagonal boron nitride from diffusion Monte Carlo_</strong></li>
+</ul>
+<p>Most relevant paper. Provides the direct benchmark value <strong>-84 ± 5 meV</strong> for a water monomer on hBN.</p>
+<ul>
+<li><strong><a href="#paper-2">Paper 2</a>: _Spontaneous Surface Charging and Janus Nature of the Hexagonal Boron Nitride-Water Interface_</strong></li>
+</ul>
+<p>Relevant for broader hBN-water interfacial chemistry, but the retrieved evidence does not provide a direct numerical adsorption energy for molecular water on pristine hBN.</p>
+<h2>Gaps</h2>
+<ul>
+<li>No retrieved <strong>experimental adsorption-energy</strong> value for water on pristine hBN.</li>
+<li>No retrieved <strong>site-specific</strong> adsorption energies, orientation dependence, or coverage dependence.</li>
+<li>No numerical <strong>DFT/RPA/MP2/CCSD(T)</strong> values available in the supplied evidence beyond the qualitative statement that DFT deviates from DMC.</li>
+<li>No direct values for <strong>defective hBN</strong>, multilayer hBN, or water clusters/films.</li>
+</ul>
+<h2>Confidence</h2>
+<p><strong>High</strong> for the statement that the best direct value in the supplied literature is <strong>-84 ± 5 meV</strong> for a <strong>water monomer on pristine periodic hBN</strong>, because it is explicitly given in the abstract of a highly relevant DMC study <a href="#paper-1">Paper 1</a>.</p>
+<p><strong>Moderate overall</strong> for the broader question “What is the adsorption energy of water on hBN?” because adsorption energy can depend on <strong>surface model, site, orientation, coverage, defects, and whether one means monomer vs interfacial water</strong>, and the retrieved evidence only provides one direct benchmark value for the monomer on pristine hBN.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header"><span class="badge b-pap">Papers Found</span><span class="sec-title">Retrieved from arXiv / Semantic Scholar</span></div>
+    <div class="papers-grid">
+        <div class="paper-card" id="paper-1">
+            <div class="paper-title">Paper 1: Water on hexagonal boron nitride from diffusion Monte Carlo</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2015 &middot; relevance 88 &middot; <a href="https://arxiv.org/abs/1505.03291v1" target="_blank">arXiv:1505.03291v1</a> &middot; <a href="https://arxiv.org/abs/1505.03291v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, hexagonal boron nitride, water molecule, boron nitride, boron nitride sheet, interaction energy, adsorption, sheet, adsorption site, density functional theory, DFT, diffusion Monte Carlo, energy, hexagonal, boron, nitride, diffusion, monte, carlo</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Despite a recent flurry of experimental and simulation studies, an accurate estimate of the interaction strength of water molecules with hexagonal boron nitride is lacking. Here we report quantum Monte Carlo results for the adsorption of a water monomer on a periodic hexagonal boron nitride sheet, which yield a water monomer interaction energy of -84 +/- 5 meV. We use the results to evaluate the performance of several widely used density functional theory (DFT) exchange correlation functionals, and find that they all deviate substantially. Differences in interaction energies between different adsorption sites are however better reproduced by DFT.</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-2">
+            <div class="paper-title">Paper 2: Spontaneous Surface Charging and Janus Nature of the Hexagonal Boron Nitride-Water Interface</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2025 &middot; relevance 63 &middot; <a href="https://arxiv.org/abs/2504.01152v1" target="_blank">arXiv:2504.01152v1</a> &middot; <a href="https://arxiv.org/abs/2504.01152v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, hexagonal boron nitride, hBN, boron nitride, BN, surface, interface, pristine, physisorption, hexagonal, boron, nitride, molecular, dynamics, graphene</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Boron, nitrogen and carbon are neighbors in the periodic table and can form strikingly similar twin structures-hexagonal boron nitride (hBN) and graphene-yet nanofluidic experiments demonstrate drastically different water friction on them. We investigate this discrepancy by probing the interfacial water and atomic-scale properties of hBN using surface-specific vibrational spectroscopy, atomic-resolution atomic force microscopy (AFM), and machine learning-based molecular dynamics. Spectroscopy reveals that pristine hBN acquires significant negative charges upon contacting water at neutral pH, unlike hydrophobic graphene, leading to interfacial water alignment and stronger hydrogen bonding. AFM supports that this charging is not defect-induced. pH-dependent measurements suggest OH- chemisorption and physisorption, which simulations validate as two nearly equally stable states undergoing dy</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-3">
+            <div class="paper-title">Paper 3: Effects of electrostatic interactions on Kapitza resistance in hexagonal boron nitride-water interfaces</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2022 &middot; relevance 59 &middot; <a href="https://arxiv.org/abs/2203.12618v1" target="_blank">arXiv:2203.12618v1</a> &middot; <a href="https://arxiv.org/abs/2203.12618v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, hexagonal boron nitride, water molecule, hBN, boron nitride, BN, surface, interface, hexagonal, boron, nitride, molecular, dynamics, nanotube</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Electrostatic interactions in nanoscale systems can influence the heat transfer mechanism and interfacial properties. This study uses molecular dynamics simulations to investigate the impact of various electrostatic interactions on the Kapitza resistance ($R_k$) on a hexagonal boron nitride-water system. The Kapitza resistance at hexagonal boron nitride nanotube (hBNNT)-water interface reduces with an increase in diameter of the nanotube due to more aggregation of water molecules per unit surface area. An increase in the partial charges on boron and nitride caused the reduction in $R_k$. With the increase in partial charge, a better hydrogen bonding between hBNNT and water was observed, whereas the structure and order of the water molecules remain the same. Nevertheless, the addition of NaCl salt into water does not have any influence on interfacial thermal transport. $R_k$ remains uncha</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-4">
+            <div class="paper-title">Paper 4: Water induced bandgap engineering in nanoribbons of hexagonal boron nitride</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2025 &middot; relevance 56 &middot; <a href="https://arxiv.org/abs/2511.19862v1" target="_blank">arXiv:2511.19862v1</a> &middot; <a href="https://arxiv.org/abs/2511.19862v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, hexagonal boron nitride, hBN, boron nitride, BN, adsorption, sheet, ab initio calculations, adsorbate, hexagonal, boron, nitride, initio, temperature</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Different from hexagonal boron nitride (hBN) sheets, the bandgap of hBN nanoribbons (BNNRs) can be changed by spatial/electrostatic confinement. It has been predicted that a transverse electric field can narrow the bandgap and even cause an insulator-metal transition in BNNRs. However, experimentally introducing an overhigh electric field across the BNNR remains challenging. Here, we theoretically and experimentally demonstrate that water adsorption greatly reduces bandgap of zigzag oriented BNNRs (zBNNRs). Ab initio calculations show that water adsorbed beside the BNNR induces a transverse equivalent electric field of over 2 V/nm thereby reducing its bandgap. Field effect transistors were successfully fabricated from zBNNRs with different widths. The conductance of zBNNRs with adsorbates of water could be tuned over 3 orders in magnitude via electrical field modulation at room temperatu</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-5">
+            <div class="paper-title">Paper 5: Dispersion of Boron Nitride Powders in Aqueous Suspensions with Cellulose</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2017 &middot; relevance 40 &middot; <a href="https://arxiv.org/abs/1710.04239v1" target="_blank">arXiv:1710.04239v1</a> &middot; <a href="https://arxiv.org/abs/1710.04239v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, hexagonal boron nitride, boron nitride, BN, adsorption, surface, dispersion, hexagonal, boron, nitride</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">The dispersion of nitride and carbide ceramic particles in water is difficult, due to the absence of hydroxyl groups on their surface. Boron nitride is not an exception and despite its numerous applications, no effective dispersant has been identified so far. We demonstrate here the dispersion properties of two cellulose derivatives for hexagonal boron nitride powders, hydroxyl ethyl cellulose and methyl cellulose. The effect of particle sizes and cellulose concentration was investigated. The adsorption of cellulose onto the surface of the BN particles was confirmed by isotherm adsorption. Zeta potential measurements shows a charge screening effect of the cellulose The suspensions obtained were highly loaded and stable versus pH, and thus could lead to homogeneous codispersion of BN particles and sintering additives.</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-6">
+            <div class="paper-title">Paper 6: Adsorption of H$_2$ on Amorphous Solid Water Studied with Molecular Dynamics Simulations</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2020 &middot; relevance 37 &middot; <a href="https://arxiv.org/abs/2003.08873v1" target="_blank">arXiv:2003.08873v1</a> &middot; <a href="https://arxiv.org/abs/2003.08873v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, adsorption, surface, adsorbate, energy, binding, molecular, phase, dynamics, temperature, desorption</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">We investigated the behavior of H$_2$, main constituent of the gas phase in dense clouds, after collision with amorphous solid water (ASW) surfaces, one of the most abundant chemical species of interstellar ices. We developed a general framework to study the adsorption dynamics of light species on interstellar ices. We provide binding energies and their distribution, sticking probabilities for incident energies between 1 meV and 60 meV, and thermal sticking coefficients between 10 and 300 K for surface temperatures from 10 to 110 K. We found that the sticking probability depends strongly on the adsorbate kinetic energy and the surface temperature, but hardly on the angle of incidence. We observed finite sticking probabilities above the thermal desorption temperature. Adsorption and thermal desorption should be considered as separate events with separate time scales. Laboratory results fo</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-7">
+            <div class="paper-title">Paper 7: Colloidal particle adsorption at water/water interfaces with ultra-low interfacial tension</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2017 &middot; relevance 28 &middot; <a href="https://arxiv.org/abs/1711.10024v2" target="_blank">arXiv:1711.10024v2</a> &middot; <a href="https://arxiv.org/abs/1711.10024v2" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, adsorption, surface, interface, energy, molecular, phase, dynamics</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Using fluorescence microscopy we study the adsorption of single latex microparticles at a water/water interface between demixing aqueous solutions of polymers, generally known as a water-in-water emulsion. Similar microparticles at the interface between molecular liquids have exhibited an extremely slow relaxation preventing the observation of expected equilibrium states. This phenomenon has been attributed to &quot;long-lived&quot; metastable states caused by significant energy barriers $Δ{\cal F}\sim γA_d\gg k_B T$ induced by high interfacial tension ($γ\sim 10^{-2}$ N/m) and nanoscale surface defects with characteristic areas $A_d \simeq$ 10--30 nm$^2$. For the studied water/water interface with ultra-low surface tension ($γ\sim 10^{-4}$ N/m) we are able to characterize the entire adsorption process and observe equilibrium states prescribed by a single equilibrium contact angle independent of t</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-8">
+            <div class="paper-title">Paper 8: Strain Tunable Band-gaps of Two-dimensional Hexagonal BN And AlN: An FP-(L)APW+lo Study</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2012 &middot; relevance 24 &middot; <a href="https://arxiv.org/abs/1206.3162v1" target="_blank">arXiv:1206.3162v1</a> &middot; <a href="https://arxiv.org/abs/1206.3162v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: h-BN, hexagonal BN, BN, hexagonal, approximation</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Using full potential density functional calculations within local density approximation (LDA), we found strain tunable band gaps of two-dimensional (2D) hexagonal BN (h-BN) and AlN (h-AlN) by application of in-plane homogeneous biaxial strain. The direct band gap of 2D h-BN turns indirect for compressive strains below 1.53% and remains direct under tensile strains up to 10%. However, the band gap of 2D h-AlN remains indirect for strains up to $\pm10%$. While our result on 2D h-BN corroborates the reported strain effect on 2D h-BN (based on pseudo-potential method), our result on the strain tunable band gap of 2D h-AlN is something new. These results may find application in fabrication of future nano-electromechanical systems (NEMS) based on 2D h-BN and h-AlN.</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-9">
+            <div class="paper-title">Paper 9: Binding Energy of Impurity in a Size Quantized Coated Semiconductor Wire: Role of the Dielectric-Constant Mismatch</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 1999 &middot; relevance 19 &middot; <a href="https://arxiv.org/abs/cond-mat/9912147v1" target="_blank">arXiv:cond-mat/9912147v1</a> &middot; <a href="https://arxiv.org/abs/cond-mat/9912147v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: binding energy, energy, binding</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">Within the framework of staircase infinitely deep (SIW) potential well model the effect of dielectric constant mismatch between the size-quantized semiconducting wire, coating and surrounding environment on impurity binding energy is considered. Calculations are done in both the absence and presence of magnetic field applied along the wire axis. By the variation method the dependences of binding energy of hydrogen-like impurity located on the wire axis on the alloy concentration, effective mass ratio, dielectric constant mismatch and magnetic field are found for the GaAs-Ga_{1-x}Al_{x}AS system.</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-10">
+            <div class="paper-title">Paper 10: Water Bridging Dynamics of Polymerase Chain Reaction in the Gauge Theory Paradigm of Quantum Fields</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2018 &middot; relevance 15 &middot; <a href="https://arxiv.org/abs/1804.02436v1" target="_blank">arXiv:1804.02436v1</a> &middot; <a href="https://arxiv.org/abs/1804.02436v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: water, dispersion, phase, dynamics</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">We discuss the role of water bridging the DNA-enzyme interaction by resorting to recent results showing that London dispersion forces between delocalized electrons of base pairs of DNA are responsible for the formation of dipole modes that can be recognized by \textit{Taq} polymerase. We describe the dynamic origin of the high efficiency and precise targeting of \textit{Taq} activity in PCR. The spatiotemporal distribution of interaction couplings, frequencies, amplitudes, and phase modulations comprise a pattern of fields which constitutes the electromagnetic image of DNA in the surrounding water, which is what the polymerase enzyme actually recognizes in the DNA water environment. The experimental realization of PCR amplification, achieved through replacement of the DNA template by the treatment of pure water with electromagnetic signals recorded from viral and bacterial DNA solutions,</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-11">
+            <div class="paper-title">Paper 11: Determination of layer-dependent exciton binding energies in few-layer black phosphorus</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2017 &middot; relevance 15 &middot; <a href="https://arxiv.org/abs/1711.01713v2" target="_blank">arXiv:1711.01713v2</a> &middot; <a href="https://arxiv.org/abs/1711.01713v2" target="_blank">source</a></div>
+            <div class="paper-meta">matched: binding energy, monolayer, energy, binding</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">The attraction between electrons and holes in semiconductors forms excitons, which largely determine the optical properties of the hosting material, and hence the device performance, especially for low-dimensional systems. Mono- and few-layer black phosphorus (BP) are emerging two-dimensional (2D) semiconductors. Despite its fundamental importance and technological interest, experimental investigation of exciton physics has been rather limited. Here, we report the first systematic measurement of exciton binding energies in ultrahigh quality few-layer BP by infrared absorption spectroscopy, with layer (L) thickness ranging from 2-6 layers. Our experiments allow us to determine the exciton binding energy, decreasing from 213 meV (2L) to 106 meV (6L). The scaling behavior with layer number can be well described by an analytical model, which takes into account the nonlocal screening effect. </div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-12">
+            <div class="paper-title">Paper 12: The Dark Energy Survey</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2005 &middot; relevance 6 &middot; <a href="https://arxiv.org/abs/astro-ph/0510346v1" target="_blank">arXiv:astro-ph/0510346v1</a> &middot; <a href="https://arxiv.org/abs/astro-ph/0510346v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: energy</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">We describe the Dark Energy Survey (DES), a proposed optical-near infrared survey of 5000 sq. deg of the South Galactic Cap to ~24th magnitude in SDSS griz, that would use a new 3 sq. deg CCD camera to be mounted on the Blanco 4-m telescope at Cerro Telolo Inter-American Observatory (CTIO). The survey data will allow us to measure the dark energy and dark matter densities and the dark energy equation of state through four independent methods: galaxy clusters, weak gravitational lensing tomography, galaxy angular clustering, and supernova distances. These methods are doubly complementary: they constrain different combinations of cosmological model parameters and are subject to different systematic errors. By deriving the four sets of measurements from the same data set with a common analysis framework, we will obtain important cross checks of the systematic errors and thereby make a subst</div>
+        </div>
+        
+
+        <div class="paper-card" id="paper-13">
+            <div class="paper-title">Paper 13: Large Synoptic Survey Telescope: Dark Energy Science Collaboration</div>
+            <div class="paper-meta">arXiv authors not parsed &middot; 2012 &middot; relevance 6 &middot; <a href="https://arxiv.org/abs/1211.0310v1" target="_blank">arXiv:1211.0310v1</a> &middot; <a href="https://arxiv.org/abs/1211.0310v1" target="_blank">source</a></div>
+            <div class="paper-meta">matched: energy</div>
+            <div class="paper-meta">full text: arXiv PDF downloaded but no text extracted</div>
+            <div class="paper-abstract">This white paper describes the LSST Dark Energy Science Collaboration (DESC), whose goal is the study of dark energy and related topics in fundamental physics with data from the Large Synoptic Survey Telescope (LSST). It provides an overview of dark energy science and describes the current and anticipated state of the field. It makes the case for the DESC by laying out a robust analytical framework for dark energy science that has been defined by its members and the comprehensive three-year work plan they have developed for implementing that framework. The analysis working groups cover five key probes of dark energy: weak lensing, large scale structure, galaxy clusters, Type Ia supernovae, and strong lensing. The computing working groups span cosmological simulations, galaxy catalogs, photon simulations and a systematic software and computational framework for LSST dark energy data analy</div>
+        </div>
+        </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div>Generated by lookup_agent_working_keyword_dynamic.py</div>
+  <div>Question-general pipeline · keyword search · dynamic relevance profile · HTML report</div>
+</div>
+</body>
+</html>
