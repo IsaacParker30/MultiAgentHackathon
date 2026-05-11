@@ -48,6 +48,7 @@ DEFAULT_FALLBACK_MODULES = [
     "smoothness",
     "outlier_detection",
     "value_range",
+    "literature_comparison",
 ]
 
 
@@ -120,12 +121,12 @@ class Validator:
         # Determine reference source and auto-discover if needed
         if reference_values is not None:
             refs_source = "user"
-        elif "literature_comparison" in modules_used:
+        else:
             reference_values, refs_source = self._lookup_references(
                 task_description, output,
             )
-        else:
-            refs_source = "user"
+            if "literature_comparison" not in modules_used:
+                modules_used.append("literature_comparison")
 
         script = self._generate_validation_script(
             output, task_description, modules_used, reference_values, refs_source,

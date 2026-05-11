@@ -4,3 +4,5 @@ pyscf
 matplotlib
 numpy
 requests
+ase
+mace-torch
