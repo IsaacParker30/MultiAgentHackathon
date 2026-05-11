@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Scientific Report — What is the binding energy of water to hexagonal Boron Nitride?</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0d0f14; --surface:#13161d; --surface2:#1a1e28;
+    --border:#2a2f3d; --accent:#00d4a0; --accent2:#4d8bff;
+    --accent3:#ff6b6b; --text:#e2e8f0; --muted:#6b7a99;
+    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);
+        font-weight:300;line-height:1.7;min-height:100vh}
+
+  .header{border-bottom:1px solid var(--border);padding:2.5rem 3rem;
+           background:var(--surface);position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:-60px;right:-60px;
+    width:300px;height:300px;
+    background:radial-gradient(circle,rgba(0,212,160,.08) 0%,transparent 70%);
+    pointer-events:none}
+  .tag{font-family:var(--mono);font-size:.7rem;color:var(--accent);
+        letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem}
+  .header h1{font-size:1.4rem;font-weight:600;max-width:800px;line-height:1.4}
+  .meta{margin-top:1rem;font-family:var(--mono);font-size:.72rem;
+         color:var(--muted);display:flex;gap:2rem}
+  .meta span{color:var(--accent2)}
+
+  .container{max-width:1100px;margin:0 auto;padding:2.5rem 3rem}
+  .section{margin-bottom:3rem}
+  .sec-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+               padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+  .badge{font-family:var(--mono);font-size:.65rem;padding:.25rem .6rem;
+          border-radius:3px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  .b-dft{background:rgba(77,139,255,.15);color:var(--accent2);border:1px solid rgba(77,139,255,.3)}
+  .b-lit{background:rgba(0,212,160,.12);color:var(--accent);border:1px solid rgba(0,212,160,.3)}
+  .b-pap{background:rgba(255,107,107,.12);color:var(--accent3);border:1px solid rgba(255,107,107,.3)}
+  .sec-title{font-size:1.05rem;font-weight:600}
+
+  .param-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem}
+  .param-card{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:1.1rem 1.3rem}
+  .param-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);
+                text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem}
+  .param-value{font-size:.9rem}.param-value .hi{font-family:var(--mono);color:var(--accent2);font-weight:600}
+
+  .box{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2rem}
+  .box p{margin-bottom:.6rem;font-size:.92rem}
+  .box h2,.box h3{color:var(--accent2);margin:1.2rem 0 .4rem;font-size:.95rem}
+  .box strong{color:var(--accent);font-weight:600}
+  .box li{margin-left:1.2rem;font-size:.92rem;margin-bottom:.3rem}
+
+  .papers-grid{display:flex;flex-direction:column;gap:1rem}
+  .paper-card{background:var(--surface);border:1px solid var(--border);
+               border-left:3px solid var(--accent3);border-radius:6px;padding:1.2rem 1.5rem;
+               transition:border-color .2s}
+  .paper-card:hover{border-left-color:var(--accent)}
+  .paper-title{font-size:.92rem;font-weight:600;margin-bottom:.4rem;line-height:1.4}
+  .paper-meta{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:.6rem}
+  .paper-meta a{color:var(--accent2);text-decoration:none}
+  .paper-meta a:hover{text-decoration:underline}
+  .paper-abstract{font-size:.83rem;color:var(--muted);line-height:1.6}
+  .no-data{font-family:var(--mono);font-size:.8rem;color:var(--accent3);padding:1rem;
+            background:rgba(255,107,107,.05);border:1px dashed rgba(255,107,107,.3);border-radius:4px}
+
+  .footer{border-top:1px solid var(--border);padding:1.5rem 3rem;
+           font-family:var(--mono);font-size:.68rem;color:var(--muted);
+           display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Multi-Agent Scientific Workflow &mdash; arXiv + Semantic Scholar</div>
+  <h1>What is the binding energy of water to hexagonal Boron Nitride?</h1>
+  <div class="meta">
+    <div>Generated <span>2026-05-11 19:11</span></div>
+    <div>Agents <span>DFTParamsAgent · DataAgent</span></div>
+    <div>Model <span>GPT-4o-mini</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="sec-header">
+      <span class="badge b-dft">DFT Parameters</span>
+      <span class="sec-title">Recommended Simulation Setup</span>
+    </div>
+    <div class="param-grid">
+      <div class="param-card"><div class="param-label">DFT Code Type</div><div class="param-value"><span class="hi">Plane-wave</span> + pseudopotential (VASP / QE)</div></div>
+      <div class="param-card"><div class="param-label">Functional</div><div class="param-value"><span class="hi">PBE</span> (GGA)</div></div>
+      <div class="param-card"><div class="param-label">Dispersion</div><div class="param-value"><span class="hi">D3(BJ)</span> Grimme</div></div>
+      <div class="param-card"><div class="param-label">Pseudopotentials</div><div class="param-value"><span class="hi">PAW</span> — B, N, O, H</div></div>
+      <div class="param-card"><div class="param-label">Plane-wave Cutoff</div><div class="param-value"><span class="hi">500–600 eV</span></div></div>
+      <div class="param-card"><div class="param-label">k-point Sampling</div><div class="param-value"><span class="hi">3×3×1</span> Γ-centered</div></div>
+      <div class="param-card"><div class="param-label">Vacuum Layer</div><div class="param-value"><span class="hi">≥15 Å</span></div></div>
+      <div class="param-card"><div class="param-label">Thermostat</div><div class="param-value"><span class="hi">Nosé–Hoover</span> @ 300 K</div></div>
+      <div class="param-card"><div class="param-label">MD Timestep</div><div class="param-value"><span class="hi">0.5–1.0 fs</span></div></div>
+      <div class="param-card"><div class="param-label">Trajectory</div><div class="param-value"><span class="hi">≥50 ps</span> production</div></div>
+      <div class="param-card"><div class="param-label">Observable</div><div class="param-value"><span class="hi">From agent</span> see analysis below</div></div>
+    </div>
+    <div class="box"><p class="no-data">No answer captured.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header">
+      <span class="badge b-lit">Literature Data</span>
+      <span class="sec-title">Diffusion Coefficients &amp; Reference Values</span>
+    </div>
+    <div class="box"><p class="no-data">No answer captured.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header">
+      <span class="badge b-pap">Papers Found</span>
+      <span class="sec-title">Retrieved from arXiv / Semantic Scholar</span>
+    </div>
+    <div class="papers-grid">
+        <div class="paper-card">
+            <div class="paper-title">Water on hexagonal boron nitride from diffusion Monte Carlo</div>
+            <div class="paper-meta">Yasmine S. Al-Hamdani, Ming Ma, Dario Alfè &middot; 2015 &middot; <a href="https://arxiv.org/abs/1505.03291v1" target="_blank">arXiv:1505.03291v1</a></div>
+            <div class="paper-abstract">Despite a recent flurry of experimental and simulation studies, an accurate estimate of the interaction strength of water molecules with hexagonal boron nitride is lacking. Here we report quantum Monte Carlo results for the adsorption of a water monomer on a periodic hexagonal boron nitride sheet, which yield a water monomer interaction energy of -...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Dispersion of Boron Nitride Powders in Aqueous Suspensions with Cellulose</div>
+            <div class="paper-meta">Florian Bouville, Sylvain Deville &middot; 2017 &middot; <a href="https://arxiv.org/abs/1710.04239v1" target="_blank">arXiv:1710.04239v1</a></div>
+            <div class="paper-abstract">The dispersion of nitride and carbide ceramic particles in water is difficult, due to the absence of hydroxyl groups on their surface. Boron nitride is not an exception and despite its numerous applications, no effective dispersant has been identified so far. We demonstrate here the dispersion properties of two cellulose derivatives for hexagonal b...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Effects of electrostatic interactions on Kapitza resistance in hexagonal boron nitride-water interfaces</div>
+            <div class="paper-meta">Sobin Alosious, Sridhar Kumar Kannam, Sarith P. Sathian &middot; 2022 &middot; <a href="https://arxiv.org/abs/2203.12618v1" target="_blank">arXiv:2203.12618v1</a></div>
+            <div class="paper-abstract">Electrostatic interactions in nanoscale systems can influence the heat transfer mechanism and interfacial properties. This study uses molecular dynamics simulations to investigate the impact of various electrostatic interactions on the Kapitza resistance ($R_k$) on a hexagonal boron nitride-water system. The Kapitza resistance at hexagonal boron ni...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Water induced bandgap engineering in nanoribbons of hexagonal boron nitride</div>
+            <div class="paper-meta">Chen Chen, Yang Hang, Hui Shan Wang &middot; 2025 &middot; <a href="https://arxiv.org/abs/2511.19862v1" target="_blank">arXiv:2511.19862v1</a></div>
+            <div class="paper-abstract">Different from hexagonal boron nitride (hBN) sheets, the bandgap of hBN nanoribbons (BNNRs) can be changed by spatial/electrostatic confinement. It has been predicted that a transverse electric field can narrow the bandgap and even cause an insulator-metal transition in BNNRs. However, experimentally introducing an overhigh electric field across th...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Hexagonal boron nitride as an ideal substrate for carbon nanotube photonics</div>
+            <div class="paper-meta">N. Fang, K. Otsuka, A. Ishii &middot; 2020 &middot; <a href="https://arxiv.org/abs/2003.03054v1" target="_blank">arXiv:2003.03054v1</a></div>
+            <div class="paper-abstract">Hexagonal boron nitride is widely used as a substrate for two-dimensional materials in both electronic and photonic devices. Here, we demonstrate that two-dimensional hexagonal boron nitride is also an ideal substrate for one-dimensional single-walled carbon nanotubes. Nanotubes directly attached to hexagonal boron nitride show bright photoluminesc...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Interband absorption in single layer hexagonal boron nitride</div>
+            <div class="paper-meta">Aniruddha Konar, Raj Jana, Tian Fang &middot; 2011 &middot; <a href="https://arxiv.org/abs/1109.5145v1" target="_blank">arXiv:1109.5145v1</a></div>
+            <div class="paper-abstract">Monolayer of hexagonal boron nitride (h-BN), commonly known as "white graphene" is a promising wide bandgap semiconducting material for deep-ultaviolet optoelectronic devices. In this report, the light absorption of a single layer hexagonal boron nitride is calculated using a tight-binding Hamiltonian. The absorption is found to be monotonically de...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Adsorption of H$_2$ on Amorphous Solid Water Studied with Molecular Dynamics Simulations</div>
+            <div class="paper-meta">G. Molpeceres, J. Kästner &middot; 2020 &middot; <a href="https://arxiv.org/abs/2003.08873v1" target="_blank">arXiv:2003.08873v1</a></div>
+            <div class="paper-abstract">We investigated the behavior of H$_2$, main constituent of the gas phase in dense clouds, after collision with amorphous solid water (ASW) surfaces, one of the most abundant chemical species of interstellar ices. We developed a general framework to study the adsorption dynamics of light species on interstellar ices. We provide binding energies and ...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Friction of Water on Graphene and Hexagonal Boron Nitride from ab initio Methods: Very Different Slippage Despite Very Similar Interface Structures</div>
+            <div class="paper-meta">Gabriele Tocci, Laurent Joly, Angelos Michaelides &middot; 2015 &middot; <a href="https://arxiv.org/abs/1503.05249v1" target="_blank">arXiv:1503.05249v1</a></div>
+            <div class="paper-abstract">Friction is one of the main sources of dissipation at liquid water/solid interfaces. Despite recent progress, a detailed understanding of water/solid friction in connection with the structure and energetics of the solid surface is lacking. Here we show for the first time that \textit{ab initio} molecular dynamics can be used to unravel the connecti...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">A Parametric and Feasibility Study for Data Sampling of the Dynamic Mode Decomposition--Range, Resolution, and Universal Convergence States</div>
+            <div class="paper-meta">Cruz Y. Li, Zengshun Chen, Tim K. T. Tse &middot; 2021 &middot; <a href="https://arxiv.org/abs/2110.06573v2" target="_blank">arXiv:2110.06573v2</a></div>
+            <div class="paper-abstract">Scientific research and engineering practice often require the modeling and decomposition of nonlinear systems. The Dynamic Mode Decomposition (DMD) is a novel Koopman-based technique that effectively dissects high-dimensional nonlinear systems into periodically distinct constituents on reduced-order subspaces. As a novel mathematical hatchling, th...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">A tale of two vortices: how numerical ergodic theory and transfer operators reveal fundamental changes to coherent structures in non-autonomous dynamical systems</div>
+            <div class="paper-meta">Chantelle Blachut, Cecilia González-Tokman &middot; 2020 &middot; <a href="https://arxiv.org/abs/2003.07559v2" target="_blank">arXiv:2003.07559v2</a></div>
+            <div class="paper-abstract">Coherent structures are spatially varying regions which disperse minimally over time and organise motion in non-autonomous systems. This work develops and implements algorithms providing multilayered descriptions of time-dependent systems which are not only useful for locating coherent structures, but also for detecting time windows within which th...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Influence of round-off errors on the reliability of numerical simulations of chaotic dynamic systems</div>
+            <div class="paper-meta">Shijie Qin, Shijun Liao &middot; 2017 &middot; <a href="https://arxiv.org/abs/1707.04720v1" target="_blank">arXiv:1707.04720v1</a></div>
+            <div class="paper-abstract">We illustrate that, like the truncation error, the round-off error has a significant influence on the reliability of numerical simulations of chaotic dynamic systems. Due to the butterfly-effect, all numerical approaches in double precision cannot give a reliable long-term simulation of chaotic dynamic systems. So, in order to avoid man-made uncert...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Application of new dynamical spectra of orbits in Hamiltonian systems</div>
+            <div class="paper-meta">Euaggelos E. Zotos &middot; 2012 &middot; <a href="https://arxiv.org/abs/1206.5423v1" target="_blank">arXiv:1206.5423v1</a></div>
+            <div class="paper-abstract">In the present article, we investigate the properties of motion in Hamiltonian systems of two and three degrees of freedom, using the distribution of the values of two new dynamical parameters. The distribution functions of the new parameters, define the S(g) and the S(w) dynamical spectra. The first spectrum definition, that is the S(g) spectrum, ...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Stability of real parametric polynomial discrete dynamical systems</div>
+            <div class="paper-meta">Fermin Franco-Medrano, Francisco J. Solis &middot; 2015 &middot; <a href="https://arxiv.org/abs/1502.00288v2" target="_blank">arXiv:1502.00288v2</a></div>
+            <div class="paper-abstract">We extend and improve the existing characterization of the dynamics of general quadratic real polynomial maps with coefficients that depend on a single parameter $λ$, and generalize this characterization to cubic real polynomial maps, in a consistent theory that is further generalized to real $m$-th degree real polynomial maps. In essence, we give ...</div>
+        </div>
+        <div class="paper-card">
+            <div class="paper-title">Nonperturbative investigations of SU(3) gauge theory with eight dynamical flavors</div>
+            <div class="paper-meta">Lattice Strong Dynamics,  Collaboration,  : &middot; 2018 &middot; <a href="https://arxiv.org/abs/1807.08411v2" target="_blank">arXiv:1807.08411v2</a></div>
+            <div class="paper-abstract">We present our lattice studies of SU(3) gauge theory with $N_f$ = 8 degenerate fermions in the fundamental representation. Using nHYP-smeared staggered fermions we study finite-temperature transitions on lattice volumes as large as $L^3 \times N_t = 48^3 \times 24$, and the zero-temperature composite spectrum on lattice volumes up to $64^3 \times 1...</div>
+        </div></div>
+  </div>
+
+</div>
+<div class="footer">
+  <span>What is the binding energy of water to hexagonal Boron Nitri...</span>
+  <span>Multi-Agent Hackathon · AG2 · arXiv</span>
+</div>
+</body></html>
